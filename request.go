@@ -2,6 +2,7 @@ package riri
 
 import (
 	"bytes"
+	"encoding/json"
 	"io/ioutil"
 	"net/http"
 
@@ -72,6 +73,18 @@ func (slf Request) Result() ([]byte, kazaana.Error) {
 	}
 	defer res.Body.Close()
 
-	data, err := ioutil.ReadAll(res.Body)
-	return data, kazaana.New(err)
+	body, err := ioutil.ReadAll(res.Body)
+	return body, kazaana.New(err)
+}
+
+// BindJSON .Result() -> JSON
+//   without json.Number
+func (slf Request) BindJSON(v interface{}) ([]byte, kazaana.Error) {
+	body, kerr := slf.Result()
+	if kerr.CheckError() {
+		return nil, kerr
+	}
+
+	err := json.Unmarshal(body, v)
+	return body, kazaana.New(err)
 }

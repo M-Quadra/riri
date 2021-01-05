@@ -18,6 +18,18 @@
 
 使用[gin](github.com/gin-gonic/gin)作为测试
 
+# 花里胡哨
+
+```
+result, kerr := GET(url).Params.Set(map[string]string{
+    "1": "2",
+}).Result()
+```
+
+.Result() 直接返回`[]byte`(body)与`kazaana.Error`(保存调用栈的错误回调)
+
+若要更接近原生返回值, 可以使用`.Do()`
+
 # 磨磨唧唧
 
 随缘更新
