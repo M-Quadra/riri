@@ -3,7 +3,7 @@ package riri
 import (
 	"bytes"
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"net/http"
 
 	"github.com/M-Quadra/kazaana"
@@ -73,7 +73,7 @@ func (slf Request) Result() ([]byte, kazaana.Error) {
 	}
 	defer res.Body.Close()
 
-	body, err := ioutil.ReadAll(res.Body)
+	body, err := io.ReadAll(res.Body)
 	return body, kazaana.New(err)
 }
 
