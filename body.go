@@ -24,7 +24,9 @@ func (slf *Request) Binary(data []byte, contentType ...string) *Request {
 	if slf.headers == nil {
 		slf.headers = map[string]string{}
 	}
-	slf.headers["Content-Type"] = contentType[0]
+	if len(contentType) > 0 {
+		slf.headers["Content-Type"] = contentType[0]
+	}
 	return slf
 }
 
