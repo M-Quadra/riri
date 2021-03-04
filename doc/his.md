@@ -2,4 +2,5 @@
 
 ## v1.0.0
 
-- 命名取自 Riri-Irokane
+- 命名取自 Riri-Irokane(璃璃色金)
+- 连神都不知道这个v1.0.0何时才能打上tag

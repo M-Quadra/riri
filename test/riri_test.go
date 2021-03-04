@@ -1,4 +1,4 @@
-package riri
+package test
 
 import (
 	"math/rand"
@@ -27,4 +27,5 @@ func RunRouter() {
 	once.Do(func() {
 		go router.Run(port)
 	})
+
 }

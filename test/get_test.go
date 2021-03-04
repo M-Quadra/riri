@@ -1,9 +1,10 @@
-package riri
+package test
 
 import (
 	"net/http"
 	"testing"
 
+	"github.com/M-Quadra/riri"
 	"github.com/gin-gonic/gin"
 )
 
@@ -29,7 +30,8 @@ func init() {
 func TestGet(t *testing.T) {
 	RunRouter()
 
-	result, kerr := GET(url + port + path0 + "?1=1").Params.Set(map[string]string{
+	resData, kerr := riri.GET(url + port + path0 + "?1=1").
+		Params.Set(map[string]string{
 		"1": "2",
 	}).Result()
 	if kerr.HasError() {
@@ -37,7 +39,7 @@ func TestGet(t *testing.T) {
 		return
 	}
 
-	if string(result) != "1" {
+	if string(resData) != "1" {
 		t.Fail()
 	}
 }
@@ -48,7 +50,8 @@ func TestGet1(t *testing.T) {
 	info := struct {
 		Msg string `json:"msg"`
 	}{}
-	_, kerr := GET(url + port + path1).BindJSON(&info)
+
+	_, kerr := riri.GET(url + port + path1).BindJSON(&info)
 	if kerr.HasError() || info.Msg != "wtf" {
 		t.Fail()
 		return
