@@ -60,8 +60,7 @@ func (slf Request) Do() (*http.Response, kazaana.Error) {
 	for k, v := range slf.headers {
 		req.Header.Add(k, v)
 	}
-	client := &http.Client{}
-	res, err := client.Do(req)
+	res, err := http.DefaultClient.Do(req)
 	return res, kazaana.New(err)
 }
 
