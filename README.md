@@ -18,7 +18,7 @@
 
 使用[gin](github.com/gin-gonic/gin)作为测试
 
-为了方便区分环境, 补充了`URLGroup`用来生成URL, 后续可能会做进一步集成
+为了方便区分环境, 补充了`riri.Group`用来生成URL, 后续可能会做进一步集成
 
 # 花里胡哨
 
@@ -40,7 +40,7 @@ result, kerr := GET(url).Params.Set(map[string]string{
 
 `interface`的缺点估计就在于没法非常完美地区分方法, 但使用`struct`套娃又会引入除必要方法外多余的结构体, 后续发展方向还未考虑好
 
-- URLGroup
+- Group
 
 对Group的进一步设想如下
 
@@ -58,3 +58,7 @@ resData, kerr := tsGroup.Path("/11").Path("/22").GET.Result()
 - 解析模版
 
 有许多简单请求后的处理行为完全一致, 是否应该想办法优化一下这类可能出现的重复代码?
+
+- http/2
+
+应该默认开启`http/2`, 还是自定义`Client`?

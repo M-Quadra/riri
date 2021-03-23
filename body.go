@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 
-	"github.com/M-Quadra/kazaana"
+	"github.com/M-Quadra/kazaana/v2"
 )
 
 // Body body

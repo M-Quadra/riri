@@ -6,7 +6,7 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/M-Quadra/kazaana"
+	"github.com/M-Quadra/kazaana/v2"
 )
 
 // Request base

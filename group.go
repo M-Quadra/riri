@@ -1,15 +1,28 @@
 package riri
 
-// URLGroup is used to generate adaptive url path in different environments.
-type URLGroup struct {
+// PreRequest url
+type PreRequest string
+
+// POST riri.POST
+func (slf PreRequest) POST() Request {
+	return POST(string(slf))
+}
+
+// GET riri.GET
+func (slf PreRequest) GET() Request {
+	return GET(string(slf))
+}
+
+// Group is used to generate adaptive url path in different environments.
+type Group struct {
 	BaseURL func() string
 }
 
 // Path return baseURL + path
-func (slf *URLGroup) Path(path string) string {
+func (slf Group) Path(path string) PreRequest {
 	if slf.BaseURL == nil {
-		return path
+		return PreRequest(path)
 	}
 
-	return slf.BaseURL() + path
+	return PreRequest(slf.BaseURL() + path)
 }

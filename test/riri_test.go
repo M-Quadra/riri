@@ -26,6 +26,6 @@ const (
 func RunRouter() {
 	once.Do(func() {
 		go router.Run(port)
+		time.Sleep(5 * time.Millisecond)
 	})
-
 }

@@ -2,6 +2,8 @@ github.com/M-Quadra/kazaana v1.1.0 h1:pQbnr4jtyOIyB7KJ1QwAinG/3eQzAtJttvRTBuUy+R
 github.com/M-Quadra/kazaana v1.1.0/go.mod h1:ZdVZObj9i33F00FCTOUjqIAXUD8eF+LH1pN2DG9JLWA=
 github.com/M-Quadra/kazaana v1.1.1 h1:xgOIsvRAD/ZHRtS2Krw+eA6LYm3PvLDG5J1Bo2dfkoU=
 github.com/M-Quadra/kazaana v1.1.1/go.mod h1:ZdVZObj9i33F00FCTOUjqIAXUD8eF+LH1pN2DG9JLWA=
+github.com/M-Quadra/kazaana/v2 v2.0.0 h1:lXgQGr/Yb+WpYXXt15rAR1I+em65asn/5ecATnvIENQ=
+github.com/M-Quadra/kazaana/v2 v2.0.0/go.mod h1:FYrI09ms3ONSjzWw7seVsTdf5tGzqJqD4Mc9gtp2Akg=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/gin-contrib/sse v0.1.0 h1:Y/yl/+YNO8GZSjAhjMsSuLt29uWRFHdHYUb5lYOV9qE=
