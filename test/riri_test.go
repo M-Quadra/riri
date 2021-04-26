@@ -6,6 +6,7 @@ import (
 	"sync"
 	"time"
 
+	"github.com/M-Quadra/kazaana/v2"
 	"github.com/gin-gonic/gin"
 )
 
@@ -24,8 +25,18 @@ const (
 )
 
 func RunRouter() {
-	once.Do(func() {
-		go router.Run(port)
+	go once.Do(func() {
+		err := router.Run(port)
+		if kazaana.HasError(err) {
+			return
+		}
+
 		time.Sleep(5 * time.Millisecond)
 	})
 }
+
+type resInfo struct {
+	Code int    `json:"code"`
+	Msg  string `json:"msg"`
+}
+

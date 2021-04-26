@@ -78,12 +78,12 @@ func (slf Request) Result() ([]byte, kazaana.Error) {
 
 // BindJSON .Result() -> JSON
 //   without json.Number
-func (slf Request) BindJSON(v interface{}) ([]byte, kazaana.Error) {
+func (slf Request) BindJSON(ptr interface{}) ([]byte, kazaana.Error) {
 	body, kerr := slf.Result()
 	if kerr.CheckError() {
 		return nil, kerr
 	}
 
-	err := json.Unmarshal(body, v)
+	err := json.Unmarshal(body, ptr)
 	return body, kazaana.New(err)
 }
