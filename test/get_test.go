@@ -16,7 +16,7 @@ const (
 func init() {
 	router.GET(path0, func(c *gin.Context) {
 		if c.Query("1") == "2" {
-			c.Writer.Write([]byte("1"))
+			c.String(http.StatusOK, "1")
 		}
 	})
 
