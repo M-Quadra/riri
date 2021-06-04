@@ -9,13 +9,21 @@ import (
 )
 
 const (
-	pathGroupTest0 = "/groupTest/0"
+	pathGroup0 = "/test/group/0"
 )
 
 func init() {
-	router.GET(pathGroupTest0, func(c *gin.Context) {
+	router.GET(pathGroup0, func(c *gin.Context) {
 	})
 }
+
+var (
+	localHost = riri.Group{
+		BaseURL: func() string {
+			return "http://localhost" + port
+		},
+	}
+)
 
 func TestGroupPath(t *testing.T) {
 	tsGroup := riri.Group{
@@ -42,13 +50,7 @@ func TestGroupPath(t *testing.T) {
 func TestGroupRequest(t *testing.T) {
 	RunRouter()
 
-	localhost := riri.Group{
-		BaseURL: func() string {
-			return "http://localhost" + port
-		},
-	}
-
-	res, kerr := localhost.Path(pathGroupTest0).GET().Do()
+	res, kerr := localHost.Path(pathGroup0).GET().Do()
 	if kerr.HasError() {
 		t.Fail()
 		return

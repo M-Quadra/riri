@@ -62,3 +62,11 @@ resData, kerr := tsGroup.Path("/11").Path("/22").GET.Result()
 - http/2
 
 应该默认开启`http/2`, 还是自定义`Client`?
+
+- Request
+
+转为小写, 不对外开放, 强制全流程链式调用?
+
+- kazaana
+
+先让子弹飞一会, 不开洞了?
