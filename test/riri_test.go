@@ -16,12 +16,10 @@ var (
 		return ":9" + strconv.FormatInt(int64(rand.Intn(999)), 10)
 	}()
 
+	host = "http://localhost" + port
+
 	router = gin.Default()
 	once   = sync.Once{}
-)
-
-const (
-	url = "http://localhost"
 )
 
 func RunRouter() {

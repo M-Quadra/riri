@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"io"
 	"net/http"
+	"net/url"
 
 	"github.com/M-Quadra/kazaana/v2"
 )
@@ -16,19 +17,23 @@ type Request struct {
 	Body
 
 	method string
-	url    string
+	url    *url.URL
 
-	params  map[string]string
+	params  url.Values
 	headers map[string]string
 	payload *bytes.Reader
 
 	kerr kazaana.Error
 }
 
-func newRequest(method, url string) Request {
+func newRequest(method, rawurl string) Request {
+	u, err := url.Parse(rawurl)
 	req := Request{
 		method: method,
-		url:    url,
+		url:    u,
+	}
+	if err != nil {
+		req.kerr = kazaana.New(err)
 	}
 
 	req.Params = &req

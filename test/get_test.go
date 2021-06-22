@@ -29,8 +29,7 @@ func init() {
 
 func TestGet(t *testing.T) {
 	RunRouter()
-
-	resData, kerr := riri.GET(url + port + path0 + "?1=1").
+	resData, kerr := riri.GET(host + path0 + "?1=1").
 		Params.Set(map[string]string{
 		"1": "2",
 	}).Result()
@@ -51,7 +50,7 @@ func TestGet1(t *testing.T) {
 		Msg string `json:"msg"`
 	}{}
 
-	_, kerr := riri.GET(url + port + path1).BindJSON(&info)
+	_, kerr := riri.GET(host + path1).BindJSON(&info)
 	if kerr.HasError() || info.Msg != "wtf" {
 		t.Fail()
 		return

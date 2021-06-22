@@ -41,7 +41,7 @@ func init() {
 func TestBinary(t *testing.T) {
 	RunRouter()
 	info := resInfo{}
-	resData, kerr := riri.POST(url + port + pathTestBinary).
+	resData, kerr := riri.POST(host + pathTestBinary).
 		Body.Binary([]byte("ok")).
 		BindJSON(&info)
 	if kerr.HasError() {

@@ -1,6 +1,8 @@
 package riri
 
-import "strings"
+import (
+	"net/url"
+)
 
 // Params query_params
 //   cover request line
@@ -10,47 +12,33 @@ type Params interface {
 }
 
 // Set query params
-func (slf *Request) Set(p map[string]string) *Request {
-	slf.params = p
-	return slf
+func (r *Request) Set(p map[string]string) *Request {
+	nValue := url.Values{}
+	for k, v := range p {
+		nValue.Set(k, v)
+	}
+	r.params = nValue
+	return r
 }
 
-func (slf Request) fullURL() string {
-	if len(slf.params) <= 0 {
-		return slf.url
+func (r Request) fullURL() string {
+	if r.url == nil {
+		return ""
 	}
 
-	pAry := []string{}
-	for k, v := range slf.params {
-		if len(k) <= 0 {
-			continue
+	fullURL := r.url.Scheme + "://" + r.url.Host + r.url.Path
+	rawQuery := r.url.Query()
+	if len(rawQuery) <= 0 {
+		if len(r.params) <= 0 {
+			return fullURL
 		}
 
-		if len(v) <= 0 {
-			pAry = append(pAry, k)
-			continue
-		}
-
-		pAry = append(pAry, k+"="+v)
-	}
-	if len(pAry) <= 0 {
-		return slf.url
+		return fullURL + "?" + r.params.Encode()
 	}
 
-	// request line
-	ary := strings.Split(slf.url, "?")
-	if len(ary) >= 2 {
-		lineAry := strings.Split(ary[1], "&")
-		for _, v := range lineAry {
-			kv := strings.SplitN(v, "=", 2)
-			_, ok := slf.params[kv[0]]
-			if ok {
-				continue
-			}
-
-			pAry = append(pAry, v)
-		}
+	for k, v := range r.params {
+		rawQuery[k] = v
 	}
 
-	return ary[0] + "?" + strings.Join(pAry, "&")
+	return fullURL + "?" + rawQuery.Encode()
 }

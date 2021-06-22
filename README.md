@@ -59,10 +59,6 @@ resData, kerr := tsGroup.Path("/11").Path("/22").GET.Result()
 
 有许多简单请求后的处理行为完全一致, 是否应该想办法优化一下这类可能出现的重复代码?
 
-- http/2
-
-应该默认开启`http/2`, 还是自定义`Client`?
-
 - Request
 
 转为小写, 不对外开放, 强制全流程链式调用?
@@ -70,3 +66,7 @@ resData, kerr := tsGroup.Path("/11").Path("/22").GET.Result()
 - kazaana
 
 先让子弹飞一会, 不开洞了?
+
+- Client 配置
+
+只有默认似乎不大行, 也许得加点自定义
