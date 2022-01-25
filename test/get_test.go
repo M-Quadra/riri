@@ -6,6 +6,7 @@ import (
 
 	"github.com/M-Quadra/riri"
 	"github.com/gin-gonic/gin"
+	"github.com/stretchr/testify/assert"
 )
 
 const (
@@ -29,18 +30,14 @@ func init() {
 
 func TestGet(t *testing.T) {
 	RunRouter()
+
 	resData, kerr := riri.GET(host + path0 + "?1=1").
 		Params.Set(map[string]string{
 		"1": "2",
 	}).Result()
-	if kerr.HasError() {
-		t.Fail()
-		return
-	}
 
-	if string(resData) != "1" {
-		t.Fail()
-	}
+	assert.False(t, kerr.HasError())
+	assert.Equal(t, "1", string(resData))
 }
 
 func TestGet1(t *testing.T) {
@@ -51,8 +48,7 @@ func TestGet1(t *testing.T) {
 	}{}
 
 	_, kerr := riri.GET(host + path1).BindJSON(&info)
-	if kerr.HasError() || info.Msg != "wtf" {
-		t.Fail()
-		return
-	}
+
+	assert.False(t, kerr.HasError())
+	assert.Equal(t, "wtf", info.Msg)
 }

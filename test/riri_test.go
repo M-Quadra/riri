@@ -38,3 +38,7 @@ type resInfo struct {
 	Msg  string `json:"msg"`
 }
 
+type resStr struct {
+	resInfo
+	Data string `json:"data,omitempty"`
+}

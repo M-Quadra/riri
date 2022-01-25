@@ -8,6 +8,7 @@ import (
 	"github.com/M-Quadra/kazaana/v2"
 	"github.com/M-Quadra/riri"
 	"github.com/gin-gonic/gin"
+	"github.com/stretchr/testify/assert"
 )
 
 const (
@@ -40,16 +41,13 @@ func init() {
 
 func TestBinary(t *testing.T) {
 	RunRouter()
+
 	info := resInfo{}
 	resData, kerr := riri.POST(host + pathTestBinary).
 		Body.Binary([]byte("ok")).
 		BindJSON(&info)
-	if kerr.HasError() {
-		t.Fail()
-		return
-	}
-	if info.Code != 1 {
-		fmt.Println(string(resData))
-		t.Fail()
-	}
+	fmt.Println(string(resData))
+
+	assert.False(t, kerr.HasError())
+	assert.Equal(t, 1, info.Code)
 }

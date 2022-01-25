@@ -2,7 +2,6 @@ package test
 
 import (
 	"errors"
-	"fmt"
 	"io"
 	"net/http"
 	"os"
@@ -11,6 +10,7 @@ import (
 	"github.com/M-Quadra/kazaana/v2"
 	"github.com/M-Quadra/riri"
 	"github.com/gin-gonic/gin"
+	"github.com/stretchr/testify/assert"
 )
 
 const (
@@ -87,9 +87,7 @@ func TestFormData(t *testing.T) {
 		"img": {FileName: imgName, FileData: imgData},
 		"txt": {Text: "txt"},
 	}).Result()
-	if kerr.HasError() || string(resData) != "1" {
-		fmt.Println(string(resData))
-		t.Fail()
-		return
-	}
+
+	assert.False(t, kerr.HasError())
+	assert.Equal(t, "1", string(resData))
 }
